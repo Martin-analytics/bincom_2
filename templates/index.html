@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Polling Units</title>
+</head>
+<body>
+
+<h2>Select Polling Unit</h2>
+
+<form action="/polling-result" method="GET">
+    <select name="polling_unit_id">
+        {% for unit in polling_units %}
+        <option value="{{ unit.uniqueid }}">
+            {{ unit.polling_unit_name }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">View Result</button>
+</form>
+    
+</body>
+</html>

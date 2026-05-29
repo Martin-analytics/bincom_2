@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LGA Total Results</title>
+</head>
+<body>
+    <h2>Check Total Results by LGA</h2>
+
+    <form action="/lga-results" method="POST">
+        <label>Select Local Government Area:</label>
+        <select name="lga_id" required>
+            <option value="">-- Select LGA --</option>
+            {% for lga in lgas %}
+                <option value="{{ lga.lga_id }}" {% if selected_lga == lga.lga_id|string %}selected{% endif %}>
+                    {{ lga.lga_name }}
+                </option>
+            {% endfor %}
+        </select>
+        <button type="submit">Get Total Score</button>
+    </form>
+
+    <hr>
+
+    {% if results %}
+        <h3>Aggregated Scores:</h3>
+        <table border="1" cellpadding="10">
+            <tr>
+                <th>Party</th>
+                <th>Total Score</th>
+            </tr>
+            {% for row in results %}
+            <tr>
+                <td>{{ row.party_abbreviation }}</td>
+                <td>{{ row.total_score }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% elif selected_lga %}
+        <p>No polling unit results recorded for this LGA.</p>
+    {% endif %}
+
+    <br>
+    <a href="/add-results">Add New Polling Unit Result</a>
+</body>
+</html>

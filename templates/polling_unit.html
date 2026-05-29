@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Polling Unit Result</title>
+</head>
+<body>
+    <h2>Results for Polling Unit ID: {{ pu_id }}</h2>
+    
+    {% if results %}
+        <table border="1" cellpadding="10">
+            <tr>
+                <th>Party</th>
+                <th>Score</th>
+            </tr>
+            {% for row in results %}
+            <tr>
+                <td>{{ row.party_abbreviation }}</td>
+                <td>{{ row.party_score }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No results found for this Polling Unit.</p>
+    {% endif %}
+    
+    <br>
+    <a href="/lga-results">View LGA Results</a> | <a href="/add-results">Add New Result</a>
+</body>
+</html>
