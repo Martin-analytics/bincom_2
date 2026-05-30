@@ -40,7 +40,6 @@
         const wardSelect = document.getElementById('ward-select');
         const puSelect = document.getElementById('pu-select');
 
-        // 1. Load LGAs immediately when the page loads
         fetch('/api/lgas')
             .then(response => response.json())
             .then(data => {
@@ -49,7 +48,6 @@
                 });
             });
 
-        // 2. When an LGA is selected, fetch the matching Wards
         lgaSelect.addEventListener('change', function() {
             wardSelect.innerHTML = '<option value="">-- Select Ward --</option>'; // Reset
             puSelect.innerHTML = '<option value="">-- Select Polling Unit --</option>'; // Reset
@@ -69,7 +67,6 @@
             }
         });
 
-        // 3. When a Ward is selected, fetch the matching Polling Units
         wardSelect.addEventListener('change', function() {
             puSelect.innerHTML = '<option value="">-- Select Polling Unit --</option>'; // Reset
             
